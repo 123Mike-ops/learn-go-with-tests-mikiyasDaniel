@@ -2,8 +2,14 @@ package iteration
 
 import "testing"
 
+const repeatCount = 5
+
 func Repeat(character string) string {
-	return ""
+	var repeated string
+	for i := 0; i < repeatCount; i++ {
+		repeated += character
+	}
+	return repeated
 }
 
 func TestRepeat(t *testing.T) {
