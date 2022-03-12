@@ -1,15 +1,20 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
-type Wallet struct{}
-
-func (w Wallet) Deposit(amount int) {
-
+type Wallet struct {
+	balance int
 }
 
-func (w Wallet) Balance() int {
-	return 0
+func (w *Wallet) Deposit(amount int) {
+	w.balance += amount
+}
+
+func (w *Wallet) Balance() int {
+	return w.balance
 }
 func TestWallet(t *testing.T) {
 
@@ -18,8 +23,10 @@ func TestWallet(t *testing.T) {
 	wallet.Deposit(10)
 
 	got := wallet.Balance()
-	want := 10
 
+	fmt.Printf("address of balance in test is %v \n", &wallet.balance)
+
+	want := 10
 	if got != want {
 		t.Errorf("got %d want %d", got, want)
 	}
